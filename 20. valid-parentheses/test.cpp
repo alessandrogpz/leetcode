@@ -1,56 +1,66 @@
-#define BOOST_TEST_MODULE valid-parentheses
+#define BOOST_TEST_MODULE valid - parentheses
 #include <boost/test/included/unit_test.hpp>
 
 #include "functions.h"
 
 BOOST_AUTO_TEST_SUITE(BracketValidationTestSuite)
 
-BOOST_AUTO_TEST_CASE(EmptyStringTest) {
+BOOST_AUTO_TEST_CASE(EmptyStringTest)
+{
     std::string s = "";
     BOOST_CHECK(isValid_myImplementation(s) == true);
 }
 
-BOOST_AUTO_TEST_CASE(SingleBracketTest) {
+BOOST_AUTO_TEST_CASE(SingleBracketTest)
+{
     std::string s = "()";
     BOOST_CHECK(isValid_myImplementation(s) == true);
 }
 
-BOOST_AUTO_TEST_CASE(MultipleBracketsTest) {
+BOOST_AUTO_TEST_CASE(MultipleBracketsTest)
+{
     std::string s = "([]{})";
     BOOST_CHECK(isValid_myImplementation(s) == true);
 }
 
-BOOST_AUTO_TEST_CASE(IncorrectOrderTest) {
+BOOST_AUTO_TEST_CASE(IncorrectOrderTest)
+{
     std::string s = "([)]";
     BOOST_CHECK(isValid_myImplementation(s) == false);
 }
 
-BOOST_AUTO_TEST_CASE(UnevenNumberTest) {
+BOOST_AUTO_TEST_CASE(UnevenNumberTest)
+{
     std::string s = "((())";
     BOOST_CHECK(isValid_myImplementation(s) == false);
 }
 
-BOOST_AUTO_TEST_CASE(OpenBracketsOnlyTest) {
+BOOST_AUTO_TEST_CASE(OpenBracketsOnlyTest)
+{
     std::string s = "([{";
     BOOST_CHECK(isValid_myImplementation(s) == false);
 }
 
-BOOST_AUTO_TEST_CASE(ClosedBracketsOnlyTest) {
+BOOST_AUTO_TEST_CASE(ClosedBracketsOnlyTest)
+{
     std::string s = ")]}";
     BOOST_CHECK(isValid_myImplementation(s) == false);
 }
 
-BOOST_AUTO_TEST_CASE(ExtraClosedBracketsTest) {
+BOOST_AUTO_TEST_CASE(ExtraClosedBracketsTest)
+{
     std::string s = "()[]}";
     BOOST_CHECK(isValid_myImplementation(s) == false);
 }
 
-BOOST_AUTO_TEST_CASE(ExtraOpenBracketsTest) {
+BOOST_AUTO_TEST_CASE(ExtraOpenBracketsTest)
+{
     std::string s = "{[()]}(";
     BOOST_CHECK(isValid_myImplementation(s) == false);
 }
 
-BOOST_AUTO_TEST_CASE(RandomStringTest) {
+BOOST_AUTO_TEST_CASE(RandomStringTest)
+{
     std::string s = "()()[{()()}]";
     BOOST_CHECK(isValid_myImplementation(s) == true);
 }
