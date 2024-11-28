@@ -1,45 +1,80 @@
-# **Project Documentation**
-
-This document provides an overview of the project structure, instructions for working with this configuration, and detailed steps for building and running exercises using **CMake**.
-
----
-
 ## **Project Structure**
 
 ```plaintext
 project-root/
-├── CMakeLists.txt    # Centralized CMake configuration
-├── build/            # Single build directory for all problems
-├── exercises/        # Folder containing all problems
-│   ├── problem1/     # Example problem folder
+├── CMakeLists.txt        # Centralized CMake configuration
+├── build/                # Single build directory for all problems
+├── exercises/            # Folder containing all problems
+│   ├── problem1/         # Example problem folder
 │   │   ├── functions.cpp
 │   │   ├── functions.h
 │   │   ├── main.cpp
 │   │   └── test.cpp
-│   ├── problem2/     # Another problem folder
+│   ├── problem2/         # Another problem folder
 │   │   ├── functions.cpp
 │   │   ├── functions.h
 │   │   ├── main.cpp
 │   │   └── test.cpp
-│   └── ...           # Additional problem folders
+│   └── ...               # Additional problem folders
+├── scripts/
+│   └── create_exercise.py # Python script for automating problem setup
+├── .vscode/
+│   └── tasks.json        # VS Code build configuration
 ```
 
 ---
 
 ## **Working with the Configuration**
 
-This project uses a **centralized `CMakeLists.txt` file** to manage all exercises, and a single `build/` directory is used for all build files. You specify the problem you want to build by changing the **name of the active problem folder** in the `CMakeLists.txt` file.
+This project uses a **centralized `CMakeLists.txt` file** to manage all exercises. A single `build/` directory is used for all build files. You specify the problem you want to build by changing the **name of the active problem folder** in the `CMakeLists.txt` file.
 
-### **1. Setting the Active Problem**
+---
 
-1. Open the `CMakeLists.txt` file in the root directory.
+### **1. Automating Problem Setup**
+
+The `create_exercise.py` script automates the creation of problem folders and updates configurations, saving time and reducing errors.
+
+#### **Using the Script**
+1. Navigate to the project root.
+2. Run the script with the new problem name as the argument:
+   ```bash
+   python scripts/create_exercise.py <problem_name>
+   ```
+
+#### **Example**
+To create a new problem named `1234.NewProblem`, run:
+```bash
+python scripts/create_exercise.py 1234.NewProblem
+```
+
+#### **What It Does**
+- Creates a new folder under `exercises/` with the following structure:
+  ```plaintext
+  exercises/1234.NewProblem/
+  ├── functions.cpp
+  ├── functions.h
+  ├── main.cpp
+  └── test.cpp
+  ```
+- Updates the `ACTIVE_PROBLEM` line in `CMakeLists.txt`:
+  ```cmake
+  set(ACTIVE_PROBLEM "1234.NewProblem")
+  ```
+- Updates the `args` section in `.vscode/tasks.json` to point to the new files.
+
+---
+
+### **2. Setting the Active Problem Manually**
+
+If you prefer manual updates:
+1. Open the `CMakeLists.txt` file.
 2. Locate the line:
    ```cmake
    set(ACTIVE_PROBLEM "problem1")
    ```
-3. Update the value of `ACTIVE_PROBLEM` to the folder name of the exercise you want to work on. For example:
+3. Replace `"problem1"` with the name of the new problem folder, e.g.:
    ```cmake
-   set(ACTIVE_PROBLEM "problem2")
+   set(ACTIVE_PROBLEM "1234.NewProblem")
    ```
 
 ---
@@ -71,7 +106,6 @@ Ensure the following dependencies are installed:
 ### **Step 2: Configure the Project**
 
 1. Navigate to the project root and create the `build/` directory:
-
    ```bash
    cd project-root
    mkdir build
@@ -79,9 +113,8 @@ Ensure the following dependencies are installed:
    ```
 
 2. Run CMake to configure the project, specifying the toolchain file for vcpkg:
-
    ```bash
-   cmake -DCMAKE_TOOLCHAIN_FILE="C:/Program Files/vcpkg/scripts/buildsystems/vcpkg.cmake" ..
+   cmake -DCMAKE_TOOLCHAIN_FILE="<path_to_vcpkg>/scripts/buildsystems/vcpkg.cmake" ..
    ```
 
    This step generates build files in the `build/` directory.
@@ -91,7 +124,6 @@ Ensure the following dependencies are installed:
 ### **Step 3: Build the Exercise**
 
 1. Build the project:
-
    ```bash
    cmake --build .
    ```
@@ -105,14 +137,13 @@ Ensure the following dependencies are installed:
 ### **Step 4: Run the Executables**
 
 1. Run the main program:
-
    ```bash
-   ./bin/main_program
+   ./build/bin/Debug/main_program
    ```
 
 2. Run the test program:
    ```bash
-   ./bin/test_program
+   ./build/bin/Debug/test_program
    ```
 
 ---
@@ -127,7 +158,7 @@ Ensure the following dependencies are installed:
   ```
 - Verify the paths to Boost in the `CMakeLists.txt` file:
   ```cmake
-  set(BOOST_ROOT "C:/Program Files/vcpkg/installed/x64-mingw-dynamic")
+  set(BOOST_ROOT "<path_to_vcpkg>/installed/x64-mingw-dynamic")
   ```
 
 ### **2. Symbol Conflicts**
@@ -135,32 +166,3 @@ Ensure the following dependencies are installed:
 If you see errors about multiple definitions of `main()`, ensure the `CMakeLists.txt` file correctly separates source files for `main_program` and `test_program`.
 
 ---
-
-## **Adding a New Problem**
-
-1. Create a new folder under `exercises/`:
-
-   ```
-   exercises/new_problem/
-   ├── functions.cpp
-   ├── functions.h
-   ├── main.cpp
-   └── test.cpp
-   ```
-
-2. Update `ACTIVE_PROBLEM` in `CMakeLists.txt`:
-
-   ```cmake
-   set(ACTIVE_PROBLEM "new_problem")
-   ```
-
-3. Follow the steps to configure, build, and run the project.
-
----
-
-## **Summary**
-
-- Organize problems under the `exercises/` folder.
-- Use the `ACTIVE_PROBLEM` variable in `CMakeLists.txt` to select the problem to build.
-- Use a single `build/` directory to avoid clutter.
-- Output executables are placed in the `bin/` directory for easy access.

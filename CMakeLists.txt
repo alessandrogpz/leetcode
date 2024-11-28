@@ -23,7 +23,7 @@ endif()
 
 # Variable to specify the active problem
 # Update ACTIVE_PROBLEM to match the folder of the current problem
-set(ACTIVE_PROBLEM "128.LongestConsecutiveSequence")  # Example problem
+set(ACTIVE_PROBLEM "1071.GreatestCommonDivisorofStrings")  # Example problem
 
 # Define source file paths relative to the exercise folder
 set(EXERCISE_DIR ${CMAKE_SOURCE_DIR}/exercises/${ACTIVE_PROBLEM})
