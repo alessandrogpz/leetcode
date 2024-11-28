@@ -31,6 +31,8 @@ FUNCTIONS_H_TEMPLATE = """
 """
 
 TEST_CPP_TEMPLATE = """
+#define BOOST_TEST_MODULE {exercise_name}
+#include <boost/test/included/unit_test.hpp>
 #include "functions.h"
 
 """
@@ -48,7 +50,7 @@ def create_exercise_folder(base_path, exercise_name):
     with open(os.path.join(exercise_path, "functions.h"), "w") as f:
         f.write(FUNCTIONS_H_TEMPLATE)
     with open(os.path.join(exercise_path, "test.cpp"), "w") as f:
-        f.write(TEST_CPP_TEMPLATE)
+        f.write(TEST_CPP_TEMPLATE.format(exercise_name=exercise_name))
 
     print(f"Exercise folder and files created: {exercise_path}")
     return exercise_path
