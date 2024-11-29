@@ -7,6 +7,10 @@ CMAKE_FILE = "CMakeLists.txt"
 TASKS_FILE = ".vscode/tasks.json"
 
 # Template content for each file
+APPROACH_MD_TEMPLATE = """
+
+"""
+
 MAIN_CPP_TEMPLATE = """
 #include <iostream>
 #include "functions.h"
@@ -43,6 +47,8 @@ def create_exercise_folder(base_path, exercise_name):
     os.makedirs(exercise_path, exist_ok=True)
 
     # Create necessary files
+    with open(os.path.join(exercise_path, "approach.md"), "w") as f:
+        f.write(APPROACH_MD_TEMPLATE)
     with open(os.path.join(exercise_path, "main.cpp"), "w") as f:
         f.write(MAIN_CPP_TEMPLATE)
     with open(os.path.join(exercise_path, "functions.cpp"), "w") as f:
