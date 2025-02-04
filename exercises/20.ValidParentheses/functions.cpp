@@ -1,24 +1,34 @@
-#include <iostream>
-#include <string>
-#include <stack>
+#include "functions.h"
 
-bool isValid(std::string s) {
+bool isValid(std::string s)
+{
     std::stack<char> st;
-    for (char c : s) {
-        if (c == '(' || c == '{' || c == '[') {
+    for (char c : s)
+    {
+        if (c == '(' || c == '{' || c == '[')
+        {
             st.push(c);
-        } else if (c == ')') {
-            if (st.empty() || st.top() != '(') {
+        }
+        else if (c == ')')
+        {
+            if (st.empty() || st.top() != '(')
+            {
                 return false;
             }
             st.pop();
-        } else if (c == '}') {
-            if (st.empty() || st.top() != '{') {
+        }
+        else if (c == '}')
+        {
+            if (st.empty() || st.top() != '{')
+            {
                 return false;
             }
             st.pop();
-        } else if (c == ']') {
-            if (st.empty() || st.top() != '[') {
+        }
+        else if (c == ']')
+        {
+            if (st.empty() || st.top() != '[')
+            {
                 return false;
             }
             st.pop();
@@ -27,24 +37,36 @@ bool isValid(std::string s) {
     return st.empty();
 }
 
-bool isValid_myImplementation(std::string s) {
+bool isValid_myImplementation(std::string s)
+{
     std::stack<char> st;
 
-    for ( char c : s ) {
-        if (c == '(' || c == '[' || c == '{') {
+    for (char c : s)
+    {
+        if (c == '(' || c == '[' || c == '{')
+        {
             st.push(c);
-        } else if (c == ')'){
-            if(st.empty() || st.top() != '(') {
+        }
+        else if (c == ')')
+        {
+            if (st.empty() || st.top() != '(')
+            {
                 return false;
             }
             st.pop();
-        } else if (c == ']'){
-            if(st.empty() || st.top() != '[') {
+        }
+        else if (c == ']')
+        {
+            if (st.empty() || st.top() != '[')
+            {
                 return false;
             }
             st.pop();
-        } else if (c == '}'){
-            if(st.empty() || st.top() != '{') {
+        }
+        else if (c == '}')
+        {
+            if (st.empty() || st.top() != '{')
+            {
                 return false;
             }
             st.pop();

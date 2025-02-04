@@ -39,6 +39,8 @@ TEST_CPP_TEMPLATE = """
 #include <boost/test/included/unit_test.hpp>
 #include "functions.h"
 
+Solution solution;
+
 """
 
 def create_exercise_folder(base_path, exercise_name):

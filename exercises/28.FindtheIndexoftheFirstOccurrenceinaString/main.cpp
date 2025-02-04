@@ -15,22 +15,7 @@
 // 1 <= haystack.length, needle.length <= 104
 // haystack and needle consist of only lowercase English characters.
 
-#include <iostream>
-#include <string>
-
-class Solution
-{
-public:
-    int strStr(std::string haystack, std::string needle)
-    {
-        size_t found = haystack.find(needle);
-        if (found != std::string::npos)
-        {
-            return found;
-        }
-        return -1;
-    }
-};
+#include "functions.h"
 
 int main()
 {

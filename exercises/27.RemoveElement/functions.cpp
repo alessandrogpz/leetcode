@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+#include "functions.h"
 
 // My Solution
 int removeElement(std::vector<int> &nums, int val)

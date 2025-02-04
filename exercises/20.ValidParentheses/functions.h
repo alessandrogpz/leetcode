@@ -1,4 +1,6 @@
-#include "functions.cpp"
+#include <iostream>
+#include <string>
+#include <stack>
 
 bool isValid(std::string s);
 void iterateString(std::string s);

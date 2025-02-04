@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
+#include "functions.h"
 
 std::string longestCommonPrefix(std::vector<std::string> &strs)
 {

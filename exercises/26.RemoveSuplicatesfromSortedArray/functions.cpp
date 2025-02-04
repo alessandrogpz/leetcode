@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+#include "functions.h"
 
 int removeDuplicates(std::vector<int> &nums)
 {
@@ -36,7 +35,7 @@ void printVector(const std::vector<int> nums)
     }
 }
 
-void removeOneItem(std::vector <int> &nums)
+void removeOneItem(std::vector<int> &nums)
 {
     nums.erase(nums.begin() + 1);
 }
