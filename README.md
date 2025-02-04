@@ -6,11 +6,13 @@ project-root/
 ├── build/                # Single build directory for all problems
 ├── exercises/            # Folder containing all problems
 │   ├── problem1/         # Example problem folder
+|   |   ├── approach.md
 │   │   ├── functions.cpp
 │   │   ├── functions.h
 │   │   ├── main.cpp
 │   │   └── test.cpp
 │   ├── problem2/         # Another problem folder
+|   |   ├── approach.md
 │   │   ├── functions.cpp
 │   │   ├── functions.h
 │   │   ├── main.cpp
@@ -35,6 +37,7 @@ This project uses a **centralized `CMakeLists.txt` file** to manage all exercise
 The `create_exercise.py` script automates the creation of problem folders and updates configurations, saving time and reducing errors.
 
 #### **Using the Script**
+
 1. Navigate to the project root.
 2. Run the script with the new problem name as the argument:
    ```bash
@@ -42,15 +45,19 @@ The `create_exercise.py` script automates the creation of problem folders and up
    ```
 
 #### **Example**
+
 To create a new problem named `1234.NewProblem`, run:
+
 ```bash
 python scripts/create_exercise.py 1234.NewProblem
 ```
 
 #### **What It Does**
+
 - Creates a new folder under `exercises/` with the following structure:
   ```plaintext
   exercises/1234.NewProblem/
+  ├── approach.md
   ├── functions.cpp
   ├── functions.h
   ├── main.cpp
@@ -67,6 +74,7 @@ python scripts/create_exercise.py 1234.NewProblem
 ### **2. Setting the Active Problem Manually**
 
 If you prefer manual updates:
+
 1. Open the `CMakeLists.txt` file.
 2. Locate the line:
    ```cmake
@@ -106,6 +114,7 @@ Ensure the following dependencies are installed:
 ### **Step 2: Configure the Project**
 
 1. Navigate to the project root and create the `build/` directory:
+
    ```bash
    cd project-root
    mkdir build
@@ -113,6 +122,7 @@ Ensure the following dependencies are installed:
    ```
 
 2. Run CMake to configure the project, specifying the toolchain file for vcpkg:
+
    ```bash
    cmake -DCMAKE_TOOLCHAIN_FILE="<path_to_vcpkg>/scripts/buildsystems/vcpkg.cmake" ..
    ```
@@ -124,6 +134,7 @@ Ensure the following dependencies are installed:
 ### **Step 3: Build the Exercise**
 
 1. Build the project:
+
    ```bash
    cmake --build .
    ```
@@ -137,6 +148,7 @@ Ensure the following dependencies are installed:
 ### **Step 4: Run the Executables**
 
 1. Run the main program:
+
    ```bash
    ./build/bin/Debug/main_program
    ```
