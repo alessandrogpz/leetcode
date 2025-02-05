@@ -1,5 +1,5 @@
 Imcomplete exercises:
-22, 1004
+22
 
 Add documentation (approach.md):
 1, 2, 9, 35, 58, 66, 88, 128, 151, 283, 334, 345, 443, 605
