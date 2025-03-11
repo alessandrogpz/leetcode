@@ -1,6 +1,7 @@
 .vscode/
 build/
 bin/
+TODO.txt
 
 # Local History for Visual Studio Code
 .history/
